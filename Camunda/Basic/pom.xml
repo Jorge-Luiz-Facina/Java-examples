@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example.basic</groupId>
-  <artifactId>Camunda Basic</artifactId>
+  <artifactId>Basic</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
   <properties>

@@ -15,3 +15,10 @@ User: demo &&
 Password: demo
 
 Link: localhost:8080
+
+## BPMN
+
+<p align="center">
+    <img src="https://github.com/MainDuelo/Java-examples/tree/master/Camunda/Basic/src/main/resources/phrase_upper_or_lower_case.PNG?raw=true" width="800">
+  </a>
+</p>

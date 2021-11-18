@@ -19,13 +19,4 @@ public class Game {
                 getGenre().toUpperCase());
         return game;
     }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "name='" + name + '\'' +
-                ", developer='" + developer + '\'' +
-                ", genre='" + genre + '\'' +
-                '}';
-    }
 }

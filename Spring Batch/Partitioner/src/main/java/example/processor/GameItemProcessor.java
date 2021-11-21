@@ -1,6 +1,6 @@
 package example.processor;
 
-import example.domain.Game;
+import example.model.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;

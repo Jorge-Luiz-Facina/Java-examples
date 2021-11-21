@@ -1,0 +1,13 @@
+CREATE TABLE game (
+	id INT PRIMARY KEY,
+	name VARCHAR(255) NULL,
+	developer VARCHAR(255) NULL,
+	genre VARCHAR(255) NULL
+);
+
+CREATE TABLE new_game (
+	id BIGINT IDENTITY NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NULL,
+    developer VARCHAR(255) NULL,
+    genre VARCHAR(255) NULL
+);

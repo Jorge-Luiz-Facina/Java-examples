@@ -1,0 +1,46 @@
+package example.batch;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.runner.RunWith;
+import org.springframework.batch.core.ExitStatus;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.JobInstance;
+import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.batch.test.JobRepositoryTestUtils;
+import org.springframework.batch.test.context.SpringBatchTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@SpringBatchTest
+@SpringBootTest
+@DirtiesContext
+@RunWith(SpringRunner.class)
+public class SpringBootBatchIntegrationTest {
+
+    @Autowired
+    private JobLauncherTestUtils jobLauncherTestUtils;
+
+    @Autowired
+    private JobRepositoryTestUtils jobRepositoryTestUtils;
+
+    @After
+    public void cleanUp() {
+        jobRepositoryTestUtils.removeJobExecutions();
+    }
+
+    @Test
+    public void givenGameList_whenJobExecuted_thenSuccess() throws Exception {
+        JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+        JobInstance jobInstance = jobExecution.getJobInstance();
+        ExitStatus jobExitStatus = jobExecution.getExitStatus();
+
+        assertThat(jobInstance.getJobName(), is("importGamerJob"));
+        assertThat(jobExitStatus.getExitCode(), is("COMPLETED"));
+    }
+}

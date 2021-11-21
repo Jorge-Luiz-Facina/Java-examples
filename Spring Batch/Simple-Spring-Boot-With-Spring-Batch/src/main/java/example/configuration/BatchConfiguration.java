@@ -3,7 +3,7 @@ package example.configuration;
 import javax.sql.DataSource;
 
 import example.component.GameJobCompletionNotificationListener;
-import example.domain.Game;
+import example.model.Game;
 import example.processor.GameItemProcessor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

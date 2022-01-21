@@ -1,17 +1,24 @@
 package exception;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ArmorTest {
 
+    @Mock
+    private Armor armorMock;
+
+    @Spy
+    private Armor armorSpy;
     @Test
     public void testMethodReturnThenThrowGetElements() {
-        Armor armorMock = mock(Armor.class);
         when(armorMock.getElements())
                 .thenThrow(NullPointerException.class);
 
@@ -22,7 +29,6 @@ public class ArmorTest {
 
     @Test
     public void testMethodVoidDoThrowAdd() {
-        Armor armorMock = mock(Armor.class);
         doThrow(NullPointerException.class)
                 .when(armorMock)
                 .add(anyString());
@@ -35,7 +41,6 @@ public class ArmorTest {
     @Test
     public void testMethodReturnThenThrowObjectExceptionGetElements() {
         String message = "Error";
-        Armor armorMock = mock(Armor.class);
         when(armorMock.getElements())
                 .thenThrow(new NullPointerException(message));
 
@@ -50,7 +55,6 @@ public class ArmorTest {
     @Test
     public void testMethodVoidDoThrowObjectExceptionAdd() {
         String message = "Error";
-        Armor armorMock = mock(Armor.class);
         doThrow(new NullPointerException(message))
                 .when(armorMock)
                 .add(anyString());
@@ -65,13 +69,11 @@ public class ArmorTest {
 
     @Test
     public void testMethodReturnSpyThenThrowGetElements() {
-        Armor armor = new Armor();
-        Armor spy = Mockito.spy(armor);
-        when(spy.getElements())
+        when(armorSpy.getElements())
                 .thenThrow(NullPointerException.class);
 
         assertThrows(NullPointerException.class, () -> {
-            spy.getElements();
+            armorSpy.getElements();
         });
     }
 }

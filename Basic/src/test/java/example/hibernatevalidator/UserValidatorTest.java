@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class UserValidatorTest {
     @InjectMocks
     private UserValidator userValidator;
 
-    @Mock
+    @Spy
     private Validator validator;
 
     @Test
@@ -36,7 +36,7 @@ public class UserValidatorTest {
     }
 
     private void allFieldErrorContains(User user, List<String> errors){
-        Mockito.when( validator.validate(getUserError()) ).thenReturn(getViolations(getUserError()));
+        Mockito.when(validator.validate(getUserError())).thenReturn(getViolations(getUserError()));
         Exception expectedEx = Assertions.assertThrows(UserFieldException.class, () ->
                 userValidator.validate(user)
         );

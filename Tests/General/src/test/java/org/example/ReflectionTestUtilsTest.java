@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReflectionTestUtilsTest {
 
     @Test
-    public void whenNonPublicField_thenReflectionTestUtilsSetField() {
+    public void privateFieldSetNameTest() {
         String name = "Jorge";
         User user = new User();
         ReflectionTestUtils.setField(user, "name", name);

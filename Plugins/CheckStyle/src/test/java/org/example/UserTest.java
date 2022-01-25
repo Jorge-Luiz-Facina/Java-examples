@@ -1,6 +1,9 @@
 package org.example;
 
-import java.math.BigDecimal;
 
 public class UserTest {
+
+    public void set(String test ){
+
+    }
 }

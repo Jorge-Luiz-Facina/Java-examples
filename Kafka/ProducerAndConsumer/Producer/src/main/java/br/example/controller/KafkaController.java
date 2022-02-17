@@ -3,10 +3,7 @@ package br.example.controller;
 import br.example.producer.TopicProducer;
 import br.example.producer.TopicSecondProducer;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/kafka")
@@ -16,13 +13,13 @@ public class KafkaController {
 
     private final TopicProducer topicProducer;
 
-    @GetMapping(value = "/send")
+    @PostMapping(value = "/send")
     public void send(@RequestBody String message){
         topicProducer.send(message);
     }
 
 
-    @GetMapping(value = "/send-two")
+    @PostMapping(value = "/send-two")
     public void sendTwo(@RequestBody String message){
         topicProducer.send(message);
         topicSecondProducer.send(message);

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Quartz
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=model
+    username: sa
+    password: sqlserver1
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    show-sql: true
+
+cron:
+  contract-update: '10+*+*+*+*+?'

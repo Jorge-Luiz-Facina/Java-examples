@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server"
+    container_name: sqlserver-dc
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+        SA_PASSWORD: sqlserver1
+        ACCEPT_EULA: Y
+    networks:
+      - sqlserver_net
+
+networks:
+  sqlserver_net:
+    name: sqlserver-net

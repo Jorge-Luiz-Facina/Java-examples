@@ -31,3 +31,5 @@ target/
 
 # Build
 build/
+
+node_modules/

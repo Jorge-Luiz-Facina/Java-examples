@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.SneakyThrows;
 import org.example.form.entity.FieldData;
 import org.example.form.enums.FieldTypeEnum;
-
 import java.util.Objects;
 
 @Builder
@@ -26,8 +25,8 @@ public class FieldDataResponse {
         return FieldDataResponse.builder().
                 id(fieldData.getId()).
                 position(fieldData.getFieldTemplate().getPosition()).
-                input(Objects.isNull(fieldData.getValue()) ?  null :
-                        new ObjectMapper().readValue(fieldData.getValue(), Object.class)).
+                input(Objects.isNull(fieldData.getInput()) ?  null :
+                        new ObjectMapper().readValue(fieldData.getInput(), Object.class)).
                 name(fieldData.getFieldTemplate().getName()).
                 isRequired(fieldData.getFieldTemplate().getIsRequired()).
                 type(fieldData.getFieldTemplate().getType()).

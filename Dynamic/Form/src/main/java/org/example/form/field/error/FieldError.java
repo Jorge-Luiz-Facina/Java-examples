@@ -8,10 +8,10 @@ import org.example.form.enums.FieldTypeEnum;
 @Data
 @Builder
 public class FieldError {
-    public String fieldName;
-    public Integer position;
-    public FieldTypeEnum type;
-    public Boolean isRequired;
+    private String fieldName;
+    private Integer position;
+    private FieldTypeEnum type;
+    private Boolean isRequired;
     private Object output;
     private Object input;
     private String message;

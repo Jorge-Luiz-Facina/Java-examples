@@ -17,7 +17,7 @@ public class TextFieldRule extends AbstractFieldRule {
 
     @Override
     public Object execute(FieldTemplate fieldTemplate, FieldDataRequest fieldDataRequest) {
-        TextFieldOperation textFieldListOperations = new TextFieldOperation(fieldTemplate, fieldDataRequest.getValue(), false);
+        TextFieldOperation textFieldListOperations = new TextFieldOperation(fieldTemplate, fieldDataRequest.getInput(), false);
         return textFieldListOperations.getInput();
     }
 }

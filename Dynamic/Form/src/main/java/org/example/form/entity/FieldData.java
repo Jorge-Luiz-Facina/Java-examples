@@ -17,7 +17,8 @@ public class FieldData {
     @JoinColumn(name = "field_fk")
     private FieldTemplate fieldTemplate;
 
-    private String value;
+    @Column
+    private String input;
 
     @ManyToOne
     @JoinColumn(name = "formData_fk")

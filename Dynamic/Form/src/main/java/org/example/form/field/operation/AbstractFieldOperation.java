@@ -32,12 +32,8 @@ public abstract class AbstractFieldOperation<T, I> {
 
     protected abstract T getOutput(Object output);
 
-    public Boolean isTypeOutput() throws CustomException {
-        try{
-            return Objects.nonNull(output);
-        }catch (Exception e) {
-            throw new CustomException(HttpStatus.BAD_REQUEST, buildError("field type error Output"));
-        }
+    public Boolean isTypeOutput() {
+        return Objects.nonNull(output);
     }
 
     private T getOutput(Object object, Boolean isOutput) {

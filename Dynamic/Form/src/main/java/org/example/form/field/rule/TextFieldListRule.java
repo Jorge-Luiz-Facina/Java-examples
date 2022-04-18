@@ -17,7 +17,7 @@ public class TextFieldListRule extends AbstractFieldRule {
 
     @Override
     public Object execute(FieldTemplate fieldTemplate, FieldDataRequest fieldDataRequest) throws CustomException {
-        TextFieldListOperation textFieldListOperations = new TextFieldListOperation(fieldTemplate, fieldDataRequest.getValue(), false);
+        TextFieldListOperation textFieldListOperations = new TextFieldListOperation(fieldTemplate, fieldDataRequest.getInput(), false);
         textFieldListOperations.errorIsNotMultiple();
         textFieldListOperations.containsValue();
         return textFieldListOperations.getInput();

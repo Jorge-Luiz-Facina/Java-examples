@@ -1,0 +1,21 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": []
+      },
+      {
+        "name": "teste2",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 2,
+        "fieldTemplates": []
+      }
+    ]
+  }
+]

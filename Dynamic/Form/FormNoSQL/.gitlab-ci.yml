@@ -1,0 +1,17 @@
+stages:
+  - test
+  - mutation_test
+
+tests:
+  stage: test
+  image: maven:3.8.1
+  script:
+    - mvn clean checkstyle:check verify
+  when: always
+
+mutation_tests:
+  stage: mutation_test
+  image: maven:3.8.1
+  script:
+    - mvn clean install org.pitest:pitest-maven:mutationCoverage
+  when: manual

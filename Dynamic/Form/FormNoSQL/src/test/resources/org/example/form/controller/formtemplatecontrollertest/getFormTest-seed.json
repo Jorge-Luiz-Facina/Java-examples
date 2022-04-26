@@ -1,0 +1,14 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "name": "TESTE",
+        "type": "TYPE",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": []
+      }
+    ]
+  }
+]

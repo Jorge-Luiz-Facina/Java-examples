@@ -1,0 +1,64 @@
+[
+  {
+    "collectionName": "formData",
+    "documents": [
+      {
+        "formTemplate": { "$$OBJECT_ID": "6263102014023f013b1c3310" },
+        "fieldsData": [
+          {
+            "fieldTemplateId": "626596f6fc3e480abbeecd4b",
+            "input": {
+              "value": "Teste"
+            }
+          },
+          {
+            "fieldTemplateId": "62659817fc3e480abbeecd4f",
+            "input": {
+              "values": [
+                "Teste",
+                "Test"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "_id": { "$$OBJECT_ID": "6263102014023f013b1c3310" },
+        "name": "teste",
+        "type": "TYPE1",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": [
+          {
+            "_id": { "$$OBJECT_ID": "626596f6fc3e480abbeecd4b" },
+            "name": "teste1",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD",
+            "isRequired": true
+          },
+          {
+            "_id": { "$$OBJECT_ID": "62659817fc3e480abbeecd4f" },
+            "name": "teste",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": true,
+            "output": {
+              "values": [
+                "Teste",
+                "Test"
+              ],
+              "isMultiple": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

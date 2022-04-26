@@ -1,0 +1,15 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "_id": { "$$OBJECT_ID": "6263102014023f013b1c3310" },
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": []
+      }
+    ]
+  }
+]

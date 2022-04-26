@@ -1,0 +1,63 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "_id": { "$$OBJECT_ID": "6263102014023f013b1c3310" },
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": [
+          {
+            "_id": { "$$OBJECT_ID": "1263102014023f013b1c3310" },
+            "name": "Teste1",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": true,
+            "output": {
+              "values": [
+                "aaa",
+                "bbb",
+                "ccc"
+              ],
+              "isMultiple": true
+            }
+          },
+          {
+            "_id": { "$$OBJECT_ID": "2263102014023f013b1c3310" },
+            "name": "Teste2",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD",
+            "isRequired": true
+          }
+        ]
+      },
+      {
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 2,
+        "fieldTemplates": [
+          {
+            "name": "Teste1",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": true,
+            "output": {
+              "values": [
+                "aaa",
+                "bbb",
+                "ccc"
+              ],
+              "isMultiple": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "_id": { "$$OBJECT_ID": "6263202014023f013b1c3310" },
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": [
+          {
+            "_id": { "$$OBJECT_ID": "1263202014023f013b1c3310" },
+            "name": "Teste",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": true,
+            "output": {
+              "values": [
+                "aaa",
+                "bbb",
+                "ccc"
+              ],
+              "isMultiple": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

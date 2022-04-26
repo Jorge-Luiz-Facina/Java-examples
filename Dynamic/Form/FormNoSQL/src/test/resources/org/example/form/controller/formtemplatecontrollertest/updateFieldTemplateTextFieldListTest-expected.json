@@ -1,0 +1,53 @@
+[
+  {
+    "collectionName": "formTemplate",
+    "documents": [
+      {
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 1,
+        "fieldTemplates": [
+          {
+            "name": "Teste",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": true,
+            "output": {
+              "values": [
+                "aaa",
+                "bbb",
+                "ccc"
+              ],
+              "isMultiple": true
+            }
+          }
+        ]
+      },
+      {
+        "name": "teste1",
+        "type": "TYPE2",
+        "system":"APPLICATION1",
+        "version": 2,
+        "fieldTemplates": [
+          {
+            "name": "Teste1",
+            "isActive": true,
+            "position": 1,
+            "type": "TEXT_FIELD_LIST",
+            "isRequired": false,
+            "output": {
+              "values": [
+                "zzz",
+                "bbb",
+                "ccc"
+              ],
+              "isMultiple": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

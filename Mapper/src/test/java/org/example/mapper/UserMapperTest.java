@@ -4,9 +4,12 @@ import org.example.dto.UserDTO;
 import org.example.entity.AddressEntity;
 import org.example.entity.DocumentEntity;
 import org.example.entity.UserEntity;
+import org.example.enums.TypeEnum;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.BeanUtils;
+
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +24,7 @@ public class UserMapperTest {
         UserEntity userEntity = new UserEntity();
         userEntity.setNameUser("Test");
         userEntity.setAge(18);
+        userEntity.setType(TypeEnum.TESTE1);
         userEntity.setAddressTeste1(addressEntity1);
         userEntity.setAddressTeste2(addressEntity2);
         userEntity.setDocumentsTeste(Arrays.asList(new DocumentEntity("RG", "432432423"),new DocumentEntity("CPF", "5435435436547")));
@@ -37,5 +41,7 @@ public class UserMapperTest {
         assertEquals(userEntity.getDocumentsTeste().get(0).getTypeName(), userDTO.getDocuments().get(0).getType());
         assertEquals(userEntity.getDocumentsTeste().get(1).getCode(), userDTO.getDocuments().get(1).getCode());
         assertEquals(userEntity.getDocumentsTeste().get(1).getTypeName(), userDTO.getDocuments().get(1).getType());
+        assertEquals(userEntity.getType().getValue(), userDTO.getType().getValue());
+        assertEquals(userEntity.getType().getDescription(), userDTO.getType().getDescription());
     }
 }

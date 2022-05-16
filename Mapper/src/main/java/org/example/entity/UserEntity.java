@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import lombok.Data;
+import org.example.enums.TypeEnum;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public class UserEntity {
     private AddressEntity addressTeste1;
     private AddressEntity addressTeste2;
     private List<DocumentEntity> documentsTeste;
+    private TypeEnum type;
 }

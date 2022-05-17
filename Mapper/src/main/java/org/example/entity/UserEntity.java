@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class UserEntity {
 
+    private Long id;
     private String nameUser;
     private Integer age;
     private AddressEntity addressTeste1;

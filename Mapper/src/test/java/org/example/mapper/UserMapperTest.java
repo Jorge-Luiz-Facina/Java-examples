@@ -5,12 +5,15 @@ import org.example.entity.AddressEntity;
 import org.example.entity.DocumentEntity;
 import org.example.entity.UserEntity;
 import org.example.enums.TypeEnum;
+import org.example.util.model.RandomValueExcludeField;
+import org.example.util.RandomValueUtil;
+import org.example.util.ReflectionFieldUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.BeanUtils;
 
-import java.util.Arrays;
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,5 +46,12 @@ public class UserMapperTest {
         assertEquals(userEntity.getDocumentsTeste().get(1).getTypeName(), userDTO.getDocuments().get(1).getType());
         assertEquals(userEntity.getType().getValue(), userDTO.getType().getValue());
         assertEquals(userEntity.getType().getDescription(), userDTO.getType().getDescription());
+    }
+
+    @Test
+    public void userEntityToUserDTO_NoNull_Ok_Test() {
+        UserEntity userEntity = RandomValueUtil.generate(UserEntity.class, Arrays.asList(new RandomValueExcludeField("id", UserEntity.class)));
+        UserDTO userDTO = UserMapper.INSTANCE.userEntityToUserDTO(userEntity);
+        assertTrue(ReflectionFieldUtil.verifyFieldsNonNull(userDTO, Arrays.asList("UserDTO.description")));
     }
 }

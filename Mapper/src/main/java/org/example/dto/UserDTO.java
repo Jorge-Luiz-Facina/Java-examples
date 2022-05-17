@@ -13,4 +13,5 @@ public class UserDTO {
     private String country;
     private List<DocumentDTO> documents;
     private TypeEnumGenericDTO type;
+    private String description;
 }

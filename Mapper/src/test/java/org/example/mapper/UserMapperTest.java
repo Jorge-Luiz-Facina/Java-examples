@@ -5,15 +5,14 @@ import org.example.entity.AddressEntity;
 import org.example.entity.DocumentEntity;
 import org.example.entity.UserEntity;
 import org.example.enums.TypeEnum;
-import org.example.util.model.RandomValueExcludeField;
 import org.example.util.RandomValueUtil;
 import org.example.util.ReflectionFieldUtil;
+import org.example.util.model.SelectExcludedField;
+import org.example.util.model.SelectField;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,7 +29,8 @@ public class UserMapperTest {
         userEntity.setType(TypeEnum.TESTE1);
         userEntity.setAddressTeste1(addressEntity1);
         userEntity.setAddressTeste2(addressEntity2);
-        userEntity.setDocumentsTeste(Arrays.asList(new DocumentEntity("RG", "432432423"),new DocumentEntity("CPF", "5435435436547")));
+        userEntity.setDocumentsTeste(Arrays.asList(new DocumentEntity("RG", "432432423","",null),
+                new DocumentEntity("CPF", "5435435436547", "", null)));
 
         UserDTO userDTO = UserMapper.INSTANCE.userEntityToUserDTO(userEntity);
         assertEquals(userEntity.getNameUser(), userDTO.getName());
@@ -50,8 +50,8 @@ public class UserMapperTest {
 
     @Test
     public void userEntityToUserDTO_NoNull_Ok_Test() {
-        UserEntity userEntity = RandomValueUtil.generate(UserEntity.class, Arrays.asList(new RandomValueExcludeField("id", UserEntity.class)));
+        UserEntity userEntity = RandomValueUtil.generate(UserEntity.class,Arrays.asList(new SelectExcludedField(UserEntity.class, Arrays.asList("id"))));
         UserDTO userDTO = UserMapper.INSTANCE.userEntityToUserDTO(userEntity);
-        assertTrue(ReflectionFieldUtil.verifyFieldsNonNull(userDTO, Arrays.asList("UserDTO.description")));
+        ReflectionFieldUtil.verifyFields(userDTO, Arrays.asList(new SelectField(UserDTO.class, Arrays.asList("description"), false)));
     }
 }

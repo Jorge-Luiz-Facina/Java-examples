@@ -20,7 +20,6 @@ bin/
 .idea/
 *.iml
 *.iws
-out/
 
 # Gradle
 .gradle/

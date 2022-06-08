@@ -3,6 +3,7 @@ package org.example.util;
 import lombok.SneakyThrows;
 import org.example.util.model.Primitive;
 import org.example.util.model.SelectField;
+
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -45,7 +46,9 @@ public abstract class ReflectionFieldUtil {
             if (ruleIncludeOrExclude(selectedFieldsInObject, field)) {
 
                 try {
-                    if ((field.getType().isPrimitive() && !isPrimitiveNonNull(field, object)) || Objects.isNull(field.get(object))) {
+                    if ((field.getType().isPrimitive() && !isPrimitiveNonNull(field, object)) ||
+                            Objects.isNull(field.get(object)) ||
+                            (isCollection(field.get(object)) && !isCollectionNonNull(field.get(object)))) {
                         throw new Exception("This field cannot be null: " + className + "." + field.getName());
                     }
                     objectVerifyFieldsNonNull(object, field, selectFields);
@@ -79,7 +82,9 @@ public abstract class ReflectionFieldUtil {
     private static void collectionVerifyFieldsNonNull(Object object, Field field, List<SelectField> selectedFieldsInObject) throws IllegalAccessException {
         if (field.get(object) instanceof Collection) {
             for (Object objectList : ((Collection) field.get(object))) {
-                verifyFields(objectList, objectList.getClass(), selectedFieldsInObject);
+                if (!objectList.getClass().getPackageName().contains("java")) {
+                    verifyFields(objectList, objectList.getClass(), selectedFieldsInObject);
+                }
             }
         }
     }
@@ -87,7 +92,9 @@ public abstract class ReflectionFieldUtil {
     private static void collectionObjectVerifyFieldsNonNull(Object object, List<SelectField> selectedFieldsInObject) throws IllegalAccessException {
         if (object instanceof Collection) {
             for (Object objectList : ((Collection) object)) {
-                verifyFields(objectList, objectList.getClass(), selectedFieldsInObject);
+                if (!objectList.getClass().getPackageName().contains("java")) {
+                    verifyFields(objectList, objectList.getClass(), selectedFieldsInObject);
+                }
             }
         }
     }
@@ -122,6 +129,18 @@ public abstract class ReflectionFieldUtil {
                 throw new Exception("There is some field chosen that is not inside the object: " + selectField.getTypeClass().getSimpleName() + selectedFieldsInObject);
             }
         }
+    }
+
+    private static Boolean isCollection(Object object) {
+        return object instanceof Collection;
+    }
+
+    private static Boolean isCollectionNonNull(Object object) {
+        Collection<Object> collection = ((Collection) object);
+        if (collection.isEmpty() || collection.contains(null)) {
+            return false;
+        }
+        return true;
     }
 
     private static boolean isPrimitiveNonNull(Field field, Object object) throws IllegalAccessException {

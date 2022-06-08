@@ -33,6 +33,4 @@ public interface DocumentMapper {
     @IterableMapping(qualifiedByName = "documentEntityToDocumentDTO")
     List<DocumentDTO> documentEntitysToDocumentDTOs(List<DocumentEntity> documentEntitys);
 
-
-
 }

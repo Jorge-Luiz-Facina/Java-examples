@@ -43,7 +43,7 @@ public class DocumentMapperTest {
     public void UserDTOUpdateToUserEntity_Ok_Test() {
         var documentDTOs = new DocumentDTO(null, "test");
         var documentEntity = new DocumentEntity("1", "2", "3", null);
-        DocumentMapper.INSTANCE.documentDTOUpdateToDocumentEntity(documentDTOs, documentEntity);
+        DocumentMapper.INSTANCE.documentDTOMergeToDocumentEntity(documentDTOs, documentEntity);
         assertEquals("test", documentEntity.getCode());
         assertEquals("1", documentEntity.getTypeName());
     }

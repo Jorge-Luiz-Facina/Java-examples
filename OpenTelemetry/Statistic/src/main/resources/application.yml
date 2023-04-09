@@ -1,0 +1,19 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_SERVER:localhost}
+    port: 5672
+    username: dev
+    password: dev
+
+server:
+  port: 8282
+
+application:
+  name: store
+  rabbit:
+    consumer:
+      reportEmail: statistic--report-email
+
+logging:
+  level:
+    root: INFO

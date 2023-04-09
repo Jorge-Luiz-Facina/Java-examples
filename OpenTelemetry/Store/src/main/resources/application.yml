@@ -1,0 +1,33 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_SERVER:localhost}
+    port: 5672
+    username: dev
+    password: dev
+  datasource:
+    url: jdbc:sqlserver://${DB_SERVER:localhost};database=Data;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: Password!23
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  flyway:
+    enabled: true
+    schemas: register
+    locations: filesystem:src/main/resources/scripts/migration
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  web:
+    locale: pt_BR
+
+server:
+  port: 8581
+
+application:
+  name: store
+  url:
+    statistic: ${STATISTIC_SERVER:host.docker.internal:8282}
+  rabbit:
+    producer:
+      statisticReportEmail: statistic--report-email

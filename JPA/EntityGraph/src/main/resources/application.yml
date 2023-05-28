@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost;database=Data;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: Password!23
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  flyway:
+    enabled: true
+    schemas: report
+    locations: filesystem:src/main/resources/scripts/migration
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+  web:
+    locale: pt_BR
+
+server:
+  port: 8080

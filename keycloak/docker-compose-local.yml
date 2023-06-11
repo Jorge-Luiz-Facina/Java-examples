@@ -1,0 +1,48 @@
+version: "3.2"
+
+services:
+    mssql:
+        image: mcr.microsoft.com/mssql/server
+        ports:
+            - "1433:1433"
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Password!23
+            - MSSQL_PID=Developer
+    mssqlscripts:
+        image: mcr.microsoft.com/mssql-tools
+        depends_on:
+            - mssql
+        command: /bin/bash -c 'until /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P "Password!23" -Q "create database keycloak"; do sleep 5; done'
+
+    external:
+        build: .
+        ports:
+            - 8581:8581
+        restart: always
+
+    keycloak:
+        image: quay.io/keycloak/keycloak:17.0.0-legacy
+        depends_on:
+            - mssql
+            - mssqlscripts
+            - external
+        ports:
+            - "8080:8080"
+        environment:
+            - KEYCLOAK_USER=admin
+            - KEYCLOAK_PASSWORD=admin
+            - DB_VENDOR=mssql
+            - DB_USER=sa
+            - DB_PASSWORD=Password!23
+            - DB_ADDR=mssql
+            - DB_DATABASE=keycloak
+            - KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/service-one-realm-export.json,/opt/jboss/keycloak/imports/service-two-realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled 
+        volumes:
+            - ./imports:/opt/jboss/keycloak/imports
+            - ./spis/service-one-spi/target/service-one-spi-1.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/service-one-spi-1.0-SNAPSHOT.jar
+            - ./spis/service-two-spi/target/service-two-spi-1.0-SNAPSHOT.jar:/opt/jboss/keycloak/standalone/deployments/service-two-spi-1.0-SNAPSHOT.jar
+
+
+
+    

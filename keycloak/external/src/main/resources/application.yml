@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: external
+
+server:
+  port: 8581
+  servlet:
+    context-path: /external

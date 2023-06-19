@@ -1,0 +1,29 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.9.2-eclipse-temurin-8' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: "${env.BRANCH_NAME}", url: "${env.REPO_URL}"
+            }
+        }
+        stage('Build') { 
+            steps {
+                dir('Jenkins/Java8Application') {
+                    sh 'mvn -B -DskipTests clean package' 
+                }
+            }
+        }
+        stage('Test') { 
+            steps {
+                dir('Jenkins/Java8Application') {
+                    sh 'mvn test' 
+                }
+            }
+        }
+    }
+}
